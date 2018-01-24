@@ -1,2 +1,30 @@
-<h1>Tops#index</h1>
-<p>Find me in app/views/tops/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Top</title>
+  </head>
+
+  <body>
+    <div class="top-image">
+      <img src="/assets/login-image.jpg">
+      <p>ブログアプリ</p>
+    </div>
+  
+    <div class="about">
+      <h1>ブログアプリについて</h1>
+      <p>ブログアプリは、140文字までの文章を投稿できるアプリです。<br>
+　　  </p>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+          <h4 class="col-xs-offset-2 col-xs-8 
+                     col-md-offset-2 col-md-3"><%= link_to 'ブログ一覧', blogs_path %></h4>
+          <h4 class="col-xs-offset-2 col-xs-8
+                     col-md-offset-2 col-md-3"><%= link_to '新規投稿', new_blog_path %></h4>
+      </div>
+　　</div>
+
+  </body>
+</html>
