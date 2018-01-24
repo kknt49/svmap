@@ -22,6 +22,8 @@
     <% end %>
     
     <%= yield %>
-  
+
+    <%= link_to 'ブログ一覧画面にもどる', '/blogs' %>
+    <%= link_to '新しくブログを投稿する', new_blog_path %>  
   </body>
 </html>
