@@ -1,4 +1,25 @@
 <h1><%= @user.name %>のページ</h1>
 
 <p>メールアドレス: <%= @user.email %></p>
-<p>user_id: <%= @user.id %></p>
+
+<div class="container">
+  <div class = "title">
+    <h1>お気に入りブログ一覧</h1>
+    <table class = "table">
+      <tr>
+        <th>投稿者</th>
+        <th>タイトル</th></th>
+        <th>内容</th>
+      </tr>
+
+      <% @favorites_blogs.each do |favorites_blog| %>
+        <tr>
+          <td><%= User.find(favorites_blog.user_id).name %></td>
+          <td><%= Blog.find(favorites_blog.blog_id).title %></td>
+          <td><%= Blog.find(favorites_blog.blog_id).content %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+

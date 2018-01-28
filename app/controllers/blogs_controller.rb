@@ -20,6 +20,10 @@ class BlogsController < ApplicationController
       render 'new'
     end
   end
+
+  def show
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
+  end
   
   def update
     if @blog.update(blog_params)
