@@ -14,7 +14,7 @@
 
       <% @favorites_blogs.each do |favorites_blog| %>
         <tr>
-          <td><%= User.find(favorites_blog.user_id).name %></td>
+          <td><%= User.find(Blog.find(favorites_blog.blog_id).user_id).name %></td>
           <td><%= Blog.find(favorites_blog.blog_id).title %></td>
           <td><%= Blog.find(favorites_blog.blog_id).content %></td>
         </tr>
