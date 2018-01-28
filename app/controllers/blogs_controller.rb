@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :redirect, only: [:new, :edit, :show]
+  before_action :redirect, only: [:index, :new, :edit, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   def index
