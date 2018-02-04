@@ -14,10 +14,15 @@
   <div class="blog_title">
     <%= form.label :title %>
     <%= form.text_field :title %>
-  </div>
-  <div class="blog_title">
+
     <%= form.label :content %>
     <%= form.text_field :content %>
-  </div>
-  <%= form.submit %>
+
+    <%= form.label :image %>
+    <%= form.file_field :image, id: :blog_image %>
+    <%= form.hidden_field :image_cache %>
+    <br>
+    <%= form.submit %>
+    </div>
+
 <% end %>

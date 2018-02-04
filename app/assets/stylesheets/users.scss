@@ -1,9 +1,11 @@
 .title h1 {
   margin-top:10px;
+  text-align : center ;
 }
 
-th{
-  text-align: center;
+
+.field { 
+  text-align : left ;
 }
 
 
@@ -13,6 +15,7 @@ th{
     background: white;
     border-top: solid 5px #5d627b;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+
 }
 
 

@@ -13,6 +13,8 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
+    @blog.image.retrieve_from_cache! params[:cache][:image]
+    @blog.save!
     
     if @blog.save
       ContactMailer.contact_mail(current_user).deliver 
@@ -62,7 +64,7 @@ class BlogsController < ApplicationController
   private
   
   def blog_params
-    params.require(:blog).permit(:title, :content)
+    params.require(:blog).permit(:title, :content, :image, :image_cache)
   end
 
   def set_blog

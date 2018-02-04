@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :feeds
   resources :contacts
   get 'tops/index'
   root to: "tops#index"
