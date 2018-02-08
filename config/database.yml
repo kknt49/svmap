@@ -6,14 +6,14 @@ default: &default
   
 development:
   <<: *default
-  database: blog_user_development
+  database: instaclone_development
 
 test:
   <<: *default
-  database: blog_user_test
+  database: instaclone_test
 
 production:
   <<: *default
-  database: blog_user_production
-  username: blog_user
-  password: <%= ENV['BLOG_USER_DATABASE_PASSWORD'] %>
+  database: instaclone_production
+  username: instaclone
+  password: <%= ENV['INSTACLONE_DATABASE_PASSWORD'] %>
