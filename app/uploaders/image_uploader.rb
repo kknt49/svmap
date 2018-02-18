@@ -13,7 +13,7 @@ class ImageUploader < CarrierWave::Uploader::Base
     storage :file  
   end
   
-  process :resize_to_limit => [400, 300] 
+  process :resize_to_limit => [800, 800] 
   
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -56,7 +56,8 @@ class ImageUploader < CarrierWave::Uploader::Base
 
 
 
-
+# 写真からGPS情報を取得
+  
   require 'exifr/jpeg'
   
   process :get_gps
@@ -69,9 +70,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     #binding.pry
   end 
 
-  #def get_longitude
-  #  @longitude = EXIFR::JPEG::new(self.file.file).gps.longitude
-  #end 
 
+
+# アップロードした写真が回転してしまう問題に対応
+
+  process :fix_rotate
+
+  def fix_rotate
+    manipulate! do |img|
+      img = img.auto_orient
+      img = yield(img) if block_given?
+      img
+    end
+  end
   
 end

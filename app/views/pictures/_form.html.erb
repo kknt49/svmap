@@ -21,6 +21,10 @@
 <%#    <%= form.collection_select :category_name, Category.all, :category_name, :category_name %>
 　　</br>
 　　<br>
+    <%= form.label :"詳細情報(型名など)" %>
+    <%= form.text_field :modelname %>
+    </br>
+　　<br>
     <%= form.label :コメント %>
     <%= form.text_field :content %>
     </br>

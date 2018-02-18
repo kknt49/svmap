@@ -3,19 +3,23 @@
 <%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :cate %>
-
-  <p>写真:</p>
+  <%= form.hidden_field :modelname %>
+  
   <p><%= image_tag(@picture.image.url) %></p>
   <%= hidden_field_tag :"cache[image]",@picture.image.cache_name %>  
 
   <p>カテゴリ:<%= @picture.cate %></p>
+  <p>詳細情報:<%= @picture.modelname %></p>
   <p>コメント:<%= @picture.content %></p>
 
   <%= form.submit  "投稿する" %>
 <% end %>
 
+  <br>
+
 <%= form_with(model: @picture, url: new_picture_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :cate %>
+  <%= form.hidden_field :modelname %>
   <%= form.submit "もどる" %>
 <% end %>

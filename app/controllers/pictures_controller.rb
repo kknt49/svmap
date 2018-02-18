@@ -76,7 +76,7 @@ class PicturesController < ApplicationController
   
   
   def picture_params
-    params.require(:picture).permit(:image, :image_cache, :content, :lat, :lon, :cate)
+    params.require(:picture).permit(:image, :image_cache, :content, :lat, :lon, :cate, :modelname)
   end
 
   def set_picture

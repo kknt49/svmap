@@ -1,36 +1,27 @@
 <div class="container">
+  
+  <h1>写真一覧</h1> 
 
-  <div class = "title">
     <div class = "notice">
       <p><%= notice %></p>
     </div>
 
-    <h1>写真一覧</h1>
-    <table class = "table">
-      <tr>
-        <th>投稿者</th>
-        <th>画像</th>
-        <th>コメント</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-      <% @pictures.each do |picture| %>
-      <tr>
-        <td><%= User.find(picture.user_id).name %></td>
-        <td><%= image_tag picture.image %></td>
-        <td><%= picture.content %></td>
-        <td><%= link_to '詳細', picture_path(picture.id), class: 'btn btn-success' %></td>
+  <div class="row">
+    <% @pictures.each do |picture| %>
+    <div class="col-xs-12
+                col-md-4 border">
+        <p><%= image_tag picture.image, :width => "70%" %></p>
+        <p>カテゴリ：<%= picture.cate %></p>        
+        <p>投稿者：<%= User.find(picture.user_id).name %></p>
+        <%= link_to '詳細', picture_path(picture.id), class: 'btn btn-success' %>
         
         <% if picture.user_id == current_user.id %>
-          <td><%= link_to '編集', edit_picture_path(picture.id), class: 'btn btn-info' %></td>
-          <td><%= link_to '削除', picture_path(picture.id), method: :delete , class: 'btn btn-danger',data: { confirm: '本当に削除していいですか？' } %></td>
+          <%= link_to '編集', edit_picture_path(picture.id), class: 'btn btn-info' %>
+          <%= link_to '削除', picture_path(picture.id), method: :delete , class: 'btn btn-danger',data: { confirm: '本当に削除していいですか？' } %>
         <% else %>
-          <td></td>
-          <td></td>
         <% end %>
-      </tr>
-      <% end %>
-    </table>
+      </div>  
+    <% end %>
   </div>
+
 </div>

@@ -5,48 +5,81 @@
     <title>Top</title>
   </head>
 
+  <br>
   <body>
     <div class="top-image">
-      <img src="/assets/login-image.jpg">
+      <img src="/assets/sv_top.jpg">
       <p>はたらくくるまMAP</p>
     </div>
   
     <div class="about">
-      <h1>はたらくくるまMAPについて</h1><br>
-      <p>はたらくくるまの写真をアップしよう！<br>
-　　  </p>
-　　  <p><%= @last_picture.id - 1 %></p>
-　　  <p><%= @picture[3].content %></p>
-      <p><%= @picture[3].lat %></p>
-      <p><%= @picture[3].lon %></p>
+      <p>はたらくくるまの写真を投稿しよう!</p>
     </div>
     
   <head>
     <style>
       #map {
         width: 100%;
-        height:400px;
+        height:600px;
         background-color: grey;
       
     </style>
   </head>
   
-    <h3>はたらくくるまMAP</h3>
     <div id="map"></div>
 
-    <script>
-      function initMap() {
-        var tatebayashi = {lat: 36.2448429, lng: 139.5419484};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: tatebayashi
-          });
+  <script>
+    function initMap() {
+   
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+      });
+    
+      var markers = [];
+
+      var image = {
+        url : "/assets/sv-icon-red.png",
+        scaledSize : new google.maps.Size(48, 48)
+      };
+
+      var locations = [
+        {title: "<%= @pictures[0].cate %>", location: {lat: <%= @pictures[0].lat %>, lng: <%= @pictures[0].lon %>}, image: "<%= @pictures[0].image_url %>"},
+        {title: "<%= @pictures[1].cate %>", location: {lat: <%= @pictures[1].lat %>, lng: <%= @pictures[1].lon %>}, image: "<%= @pictures[1].image_url %>"},
+        {title: "<%= @pictures[2].cate %>", location: {lat: <%= @pictures[2].lat %>, lng: <%= @pictures[2].lon %>}, image: "<%= @pictures[2].image_url %>"},
+        {title: "<%= @pictures[3].cate %>", location: {lat: <%= @pictures[3].lat %>, lng: <%= @pictures[3].lon %>}, image: "<%= @pictures[3].image_url %>"},
+        {title: "<%= @pictures[4].cate %>", location: {lat: <%= @pictures[4].lat %>, lng: <%= @pictures[4].lon %>}, image: "<%= @pictures[4].image_url %>"},
+      ];
+    
+      var bounds = new google.maps.LatLngBounds();
+
+      for (var i = 0; i < locations.length; i++){
+        var position = locations[i].location;
+        var title = locations[i].title;
+        var image = {
+          url : locations[i].image,
+          scaledSize : new google.maps.Size(48, 48)
+        };
         
+        var marker = new google.maps.Marker({
+          map: map,
+          position: position,
+          title: title,
+          icon: image,
+          animation: google.maps.Animation.DROP,
+          id: i
+        });
+    
+        markers.push(marker);
+        bounds.extend(markers[i].position);
       }
       
-    </script>
+      map.fitBounds(bounds);
+    }
+      
+      
+  </script>
     
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA02Mc7Su7s6oexSB2yLz9ZSUT59Xr5C9M&callback=initMap"type="text/javascript"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA02Mc7Su7s6oexSB2yLz9ZSUT59Xr5C9M&callback=initMap"type="text/javascript"></script>
 
     <div class="container">
       <div class="row">
