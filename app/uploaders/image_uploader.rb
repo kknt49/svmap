@@ -1,16 +1,17 @@
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :fog 
-  # storage :file     
+  # storage :fog 
+  storage :file     
   
   process :resize_to_limit => [400, 300] 
   
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
+  
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -46,4 +47,33 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+
+
+
+  require 'exifr/jpeg'
+  
+  process :get_gps
+  
+  #process :get_latitude
+  #process :get_longitude
+  
+  #def get_exif_info
+  #  @exif = Magick::Image.read(self.file.file).first
+  #end 
+
+
+  def get_gps
+    @location = Location.new
+    @location.latitude = EXIFR::JPEG::new(self.file.file).gps.latitude
+    @location.longitude = EXIFR::JPEG::new(self.file.file).gps.longitude
+    @location.save
+    #binding.pry
+  end 
+
+  #def get_longitude
+  #  @longitude = EXIFR::JPEG::new(self.file.file).gps.longitude
+  #end 
+
+  
 end

@@ -65,3 +65,5 @@ end
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'exifr'
+gem 'rmagick'

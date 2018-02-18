@@ -1,0 +1,8 @@
+<h1>以下の内容で登録する</h1>
+
+<%= form_with(model: @category, url: categories_path, local: true) do |form| %>
+
+  <p>カテゴリ名:<%= @category.name %></p>
+  
+  <%= form.submit  "登録する" %>
+<% end %>

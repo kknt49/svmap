@@ -1,0 +1,17 @@
+<%= form_with(model: @category, local: true, url: categories_path) do |form| %>
+
+<div class="field">
+
+<h1>カテゴリを追加する</h1>
+
+  <div class="picture_title">
+　　<br>
+    <%= form.label :カテゴリ名 %>
+    <%= form.text_field :name %>
+    <br>
+    <%= form.submit "カテゴリを追加する" %>
+  </div>
+
+</div>
+
+<% end %>

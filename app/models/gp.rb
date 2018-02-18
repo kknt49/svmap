@@ -1,0 +1,2 @@
+class Gp < ApplicationRecord
+end

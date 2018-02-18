@@ -15,9 +15,15 @@
     <%= form.label :写真 %>
     <%= form.file_field :image, id: :picture_image %>
     <%= form.hidden_field :image_cache %>
+    <br>
+    <%= form.label :カテゴリ %>
+    <%= form.text_field :cate %>
+<%#    <%= form.collection_select :category_name, Category.all, :category_name, :category_name %>
+　　</br>
 　　<br>
     <%= form.label :コメント %>
     <%= form.text_field :content %>
+    </br>
 
     <br>
     <%= form.submit "写真を投稿する"%>

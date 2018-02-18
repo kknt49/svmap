@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208140450) do
+ActiveRecord::Schema.define(version: 20180218051949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20180208140450) do
     t.text "content"
     t.integer "user_id"
     t.string "image"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -35,12 +41,33 @@ ActiveRecord::Schema.define(version: 20180208140450) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "gps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gpsses", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string "image"
     t.text "content"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "lat"
+    t.float "lon"
+    t.string "category_name"
+    t.string "cate"
   end
 
   create_table "users", force: :cascade do |t|

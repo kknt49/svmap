@@ -21,8 +21,14 @@ class PicturesController < ApplicationController
   end
 
   def create
+    require 'exifr/jpeg'
+    @location = Location.last
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
+    
+    @picture.lat = @location.latitude
+    @picture.lon = @location.longitude
+    
     @picture.image.retrieve_from_cache! params[:cache][:image]
     @picture.save!
     
@@ -53,6 +59,7 @@ class PicturesController < ApplicationController
   def confirm
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
+    
     render :new if @picture.invalid?
   end
 
@@ -69,7 +76,7 @@ class PicturesController < ApplicationController
   
   
   def picture_params
-    params.require(:picture).permit(:image, :image_cache, :content)
+    params.require(:picture).permit(:image, :image_cache, :content, :lat, :lon, :cate)
   end
 
   def set_picture
