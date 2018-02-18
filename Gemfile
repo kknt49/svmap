@@ -67,3 +67,5 @@ gem 'mini_magick'
 gem 'fog'
 gem 'exifr'
 gem 'rmagick'
+
+gem 'bootstrap-sass','~> 3.2.0'
