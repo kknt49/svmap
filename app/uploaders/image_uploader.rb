@@ -55,14 +55,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   
   process :get_gps
   
-  #process :get_latitude
-  #process :get_longitude
-  
-  #def get_exif_info
-  #  @exif = Magick::Image.read(self.file.file).first
-  #end 
-
-
   def get_gps
     @location = Location.new
     @location.latitude = EXIFR::JPEG::new(self.file.file).gps.latitude
