@@ -1,48 +1,64 @@
-<h1></h1>
+<br>
+<br>
 
-<div class = "image1">
-  <p><%= image_tag @picture.image, :width => "60%" %></p>  
+<div class = "title">  
+  <h3>詳細情報</h3> 
 </div>
 
-<p></p>
 
-<div>
-<% unless @picture.user == current_user %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(picture_id: @picture.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入りする', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-info' %>
-  <% end %>
-<% end %>
-</div>
+<div class="row eq-height">
 
-<p></p>
-<p>カテゴリ: <%= @picture.cate %></p>
-<p>詳細情報: <%= @picture.modelname %></p>
-<p>コメント: <%= @picture.content %></p>
-<p>緯度: <%= @picture.lat %></p>
-<p>経度: <%= @picture.lon %></p>
+  <div class="col-xs-12
+              col-md-6 border">
 
-
-<div>
-  <head>
-    <style>
-      #map {
-        width: 100%;
-        height: 600px;
-        background-color: grey;
-      }
-    </style>
-  </head>
+    <h3>写真</h3>
   
+    <div class = "image1">
+      <p><%= image_tag @picture.image, :width => "80%" %></p>  
+    </div>
+
+    <p></p>
+
+    <div>
+      <% unless @picture.user == current_user %>
+        <% if @favorite.present? %>
+          <%= link_to 'お気に入り解除する', favorite_path(picture_id: @picture.id), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'お気に入りする', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-info' %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <br>
+    <p>カテゴリ: <%= @picture.cate %></p>
+    <p>詳細情報: <%= @picture.modelname %></p>
+    <p>コメント: <%= @picture.content %></p>
+
+  </div>
+
+  <div class="col-xs-12
+              col-md-6 border">
+  
+    <head>
+      <style>
+        #map {
+          width: 90%;
+          height:60ex;
+          background-color: grey;
+          margin: auto;
+        }
+      </style>
+    </head>
+
     <h3>はたらくくるまMAP</h3>
+    
     <div id="map"></div>
     
     <script>
       function initMap() {
         var location = {lat: <%= @picture.lat %>, lng: <%= @picture.lon %>};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 18,
+          zoom: 16,
           center: location
           });
         
@@ -63,6 +79,9 @@
     </script>
     
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA02Mc7Su7s6oexSB2yLz9ZSUT59Xr5C9M&callback=initMap"type="text/javascript"></script>
+
+  </div>
+
 </div>
 
 
