@@ -12,6 +12,7 @@
   <% end %>
 
   <div class="picture_title">
+    <br>
     <%= form.label :写真 %>
     <%= form.file_field :image, id: :picture_image %>
     <%= form.hidden_field :image_cache %>
@@ -30,7 +31,7 @@
     </br>
 
     <br>
-    <%= form.submit "写真を投稿する"%>
+    <%= form.submit "写真を投稿する", class: 'btn btn-primary'%>
     </div>
 
 <% end %>

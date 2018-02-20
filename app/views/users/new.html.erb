@@ -1,5 +1,5 @@
 <div class="field">
-<h1>Sign up</h1>
+<h2>アカウント作成</h2>
 
 <% if @user.errors.any? %>
   <div id="error_explanation">
@@ -13,20 +13,22 @@
 <% end %>
 
   <%= form_with(model: @user, local: true) do |f| %>  
-    <%= f.label :name %>
+    <br>
+    <%= f.label :名前 %>
     <%= f.text_field :name %>
 
-    <%= f.label :email %>
+    <%= f.label :メールアドレス %>
     <%= f.email_field :email %>
 
-    <%= f.label :password %>
+    <%= f.label :パスワード %>
     <%= f.password_field :password %>
 
-    <%= f.label :password_confirmation %>
+    <%= f.label :パスワード確認 %>
     <%= f.password_field :password_confirmation %>
   
     <br>
-    <%= f.submit "Create my account" %>
+    <br>
+    <%= f.submit "アカウント作成", class: 'btn btn-primary'  %>
   <% end %>
 
 
