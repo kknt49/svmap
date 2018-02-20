@@ -1,15 +1,19 @@
 <div class="container">
+
+<h1></h1>
+
+  <div class = "title">  
+    <h1>写真一覧</h1> 
+  </div>
   
-  <h1>写真一覧</h1> 
+  <div class = "notice">
+    <p><%= notice %></p>
+  </div>
 
-    <div class = "notice">
-      <p><%= notice %></p>
-    </div>
-
-  <div class="row">
+  <div class="row eq-height">
     <% @pictures.each do |picture| %>
-    <div class="col-xs-12
-                col-md-4 border">
+      <div class="col-xs-12
+                  col-md-4 border">
         <p><%= image_tag picture.image, :width => "70%" %></p>
         <p>カテゴリ：<%= picture.cate %></p>        
         <p>投稿者：<%= User.find(picture.user_id).name %></p>
@@ -20,7 +24,7 @@
           <%= link_to '削除', picture_path(picture.id), method: :delete , class: 'btn btn-danger',data: { confirm: '本当に削除していいですか？' } %>
         <% else %>
         <% end %>
-      </div>  
+      </div>
     <% end %>
   </div>
 
