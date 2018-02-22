@@ -38,14 +38,19 @@ class PicturesController < ApplicationController
     @picture.lat = @location.latitude
     @picture.lon = @location.longitude
     
-    @picture.image.retrieve_from_cache! params[:cache][:image]
-    @picture.save!
-    
-    if @picture.save
-      ContactMailer.contact_mail(current_user).deliver 
-      redirect_to pictures_path, notice: "写真をアップしました！"
+    if @picture.lat == 200
+      redirect_to new_picture_path, notice: "位置情報が取得できません。位置情報を持つ写真を投稿してください"
+        
     else
-      render 'new'
+      @picture.image.retrieve_from_cache! params[:cache][:image]
+      @picture.save!
+    
+      if @picture.save
+        ContactMailer.contact_mail(current_user).deliver 
+        redirect_to pictures_path, notice: "写真をアップしました！"
+      else
+        render 'new'
+      end
     end
   end
 
@@ -68,7 +73,6 @@ class PicturesController < ApplicationController
   def confirm
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-    
     render :new if @picture.invalid?
   end
 
