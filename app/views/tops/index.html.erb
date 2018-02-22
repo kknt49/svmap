@@ -31,43 +31,49 @@
 
 
 <%# GoogleMAP表示用スクリプト %>
+
+
   <script>
-
+  
     function initMap() {
-
-
-// locationsに@pictureの各要素を代入する。for文で書きたいがうまく動かない
-
-      var locations = [
-        {title: "<%= @pictures[0].cate %>", location: {lat: <%= @pictures[0].lat %>, lng: <%= @pictures[0].lon %>}, image: "<%= @pictures[0].image_url %>"},
-        {title: "<%= @pictures[1].cate %>", location: {lat: <%= @pictures[1].lat %>, lng: <%= @pictures[1].lon %>}, image: "<%= @pictures[1].image_url %>"},
-        {title: "<%= @pictures[2].cate %>", location: {lat: <%= @pictures[2].lat %>, lng: <%= @pictures[2].lon %>}, image: "<%= @pictures[2].image_url %>"},
-        {title: "<%= @pictures[3].cate %>", location: {lat: <%= @pictures[3].lat %>, lng: <%= @pictures[3].lon %>}, image: "<%= @pictures[3].image_url %>"},
-        {title: "<%= @pictures[4].cate %>", location: {lat: <%= @pictures[4].lat %>, lng: <%= @pictures[4].lon %>}, image: "<%= @pictures[4].image_url %>"},
-        {title: "<%= @pictures[5].cate %>", location: {lat: <%= @pictures[5].lat %>, lng: <%= @pictures[5].lon %>}, image: "<%= @pictures[5].image_url %>"},
-        {title: "<%= @pictures[6].cate %>", location: {lat: <%= @pictures[6].lat %>, lng: <%= @pictures[6].lon %>}, image: "<%= @pictures[6].image_url %>"},
-        {title: "<%= @pictures[7].cate %>", location: {lat: <%= @pictures[7].lat %>, lng: <%= @pictures[7].lon %>}, image: "<%= @pictures[7].image_url %>"},
-      ];
+      
+      
+      var lat = [];
+      lat = <%= @lat %>;
+      
+      var lon = [];
+      lon = <%= @lon %>;
+      
+      var id = [];
+      id = <%= @id %>;
+      
+      var cate = [];
+      cate = <%= @cate_j %>;
+      
+      var image = [];
+      image = <%= @image_j %>;
 
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
       });
-    
+      
       var markers = [];
-
+      
       var bounds = new google.maps.LatLngBounds();
+      
+      
 
-      for (var i = 0; i < locations.length; i++){
-        var position = locations[i].location;
-        var title = locations[i].title;
+      for (var i = 0; i < lat.length; i++){
+        var position = {lat: lat[i], lng: lon[i]}; 
+        var title = cate[i];
         var image = {
-          url : locations[i].image,
+          url : image[i],
           scaledSize : new google.maps.Size(48, 48)
         };
         
         var marker = new google.maps.Marker({
-          map: map,
           position: position,
+          map: map,
           title: title,
           icon: image,
           animation: google.maps.Animation.DROP,
@@ -76,8 +82,8 @@
     
         markers.push(marker);
         bounds.extend(markers[i].position);
-      }
-      
+        
+      }  
       map.fitBounds(bounds);
     }
       

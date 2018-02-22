@@ -4,17 +4,7 @@ class PicturesController < ApplicationController
 
   def index
     @pictures = Picture.all
-    
-    @pictures_j = @pictures.to_json.html_safe
-    
-#    @pictures.each do |picture|
-      
-#    for 
-#      @data = Array[picture.cate, picture.lat, picture.lon, picture.image_url]
-#    end
- 
   end
-
 
   def show
     @favorite = current_user.favorites.find_by(picture_id: @picture.id)

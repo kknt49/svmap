@@ -69,3 +69,5 @@ gem 'exifr'
 gem 'rmagick'
 
 gem 'bootstrap-sass','~> 3.2.0'
+
+gem 'gon'

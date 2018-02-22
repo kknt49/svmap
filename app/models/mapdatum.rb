@@ -1,0 +1,2 @@
+class Mapdatum < ApplicationRecord
+end
