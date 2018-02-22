@@ -44,30 +44,28 @@
       var lon = [];
       lon = <%= @lon %>;
       
-      var id = [];
-      id = <%= @id %>;
+      var pictureid = [];
+      pictureid = <%= @id %>;
       
       var cate = [];
       cate = <%= @cate_j %>;
       
-      var image = [];
-      image = <%= @image_j %>;
+      var photo = [];
+      photo = <%= @image_j %>;
 
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 14,
       });
-      
+
       var markers = [];
       
       var bounds = new google.maps.LatLngBounds();
       
-      
-
       for (var i = 0; i < lat.length; i++){
         var position = {lat: lat[i], lng: lon[i]}; 
         var title = cate[i];
         var image = {
-          url : image[i],
+          url : photo[i],
           scaledSize : new google.maps.Size(48, 48)
         };
         
@@ -79,9 +77,14 @@
           animation: google.maps.Animation.DROP,
           id: i
         });
-    
         markers.push(marker);
         bounds.extend(markers[i].position);
+        
+        google.maps.event.addListener(marker, 'click', (function(marker,i){
+          return function(){
+            window.open('/pictures/'+ pictureid[i])
+          }
+        })(marker, i));
         
       }  
       map.fitBounds(bounds);
