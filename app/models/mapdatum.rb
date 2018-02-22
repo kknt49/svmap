@@ -1,2 +1,0 @@
-class Mapdatum < ApplicationRecord
-end
